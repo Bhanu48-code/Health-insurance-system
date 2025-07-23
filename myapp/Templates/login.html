@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body style="
+    background-image: url('{% static 'IMG_20230627_221734.jpg' %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+">
+    
+    <form method="POST" action="/login/" >
+        {% csrf_token %}
+        <h2>Login</h2>
+        <label for="username" >Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+        
+    </form>
+    <form method="POST" action="/newRegisterForm/">
+        {% csrf_token %}
+        <br><br><br><br><br><br><br><br><br><br><br>
+         <input type="submit" value="register">
+    </form>
+<form method="POST" action="/show-users/">
+        {% csrf_token %}
+        <br><br><br><br><br><br><br><br><br><br><br>
+         <input type="submit" value="show users">
+    </form>
+
+   
+</body>
+</html>
