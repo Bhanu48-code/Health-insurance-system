@@ -13,7 +13,7 @@ class MyApp(models.Model):
 
 
 # below code belongs to employee db table 
-class MyApp(models.Model):
+class Myemployee(models.Model):
     
     name = models.CharField(max_length=150)
     email = models.CharField(max_length=128)
