@@ -29,7 +29,7 @@ def login(request):
 
 # customer or employee options login 
 def loginChoice(request):
-    return render(request,"HomaPage.html")
+    return render(request,"HomePage.html")
 
 
 
