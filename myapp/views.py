@@ -17,7 +17,7 @@ def login(request):
         try:
             
              user = MyApp.objects.get(username=username, password=password)
-             return render(request, 'home.html')
+             return render(request, 'adminHome.html')
              #return render(request, 'welcome.html', {'user': user.username})
             
         except MyApp.DoesNotExist:
@@ -25,6 +25,13 @@ def login(request):
            
     return render(request, 'login.html')
    #return render(request, 'home.html')
+
+
+# customer or employee options login 
+def loginChoice(request):
+    return render(request,"HomaePage.html")
+
+
 
 def newRegisterForm(request):
    
