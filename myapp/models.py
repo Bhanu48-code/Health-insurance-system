@@ -19,9 +19,8 @@ class Myemployee(models.Model):
     email = models.CharField(max_length=128)
 
     class Meta:
-        db_table = 'employee'  # this must match the MySQL table name
-        managed = False
-
+        db_table = 'employee'  # must match the MySQL table name exactly
+        managed = False        # prevents Django from modifying table
 
 # Create your models here.
 

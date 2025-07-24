@@ -17,14 +17,14 @@
     align-items: center;
 ">
 
-    <form method="POST" action="/newEmployeeRegistration/">
+    <form method="POST" action="/newempDetailsRegistration/">
         {% csrf_token %}
          <h1>Login Page</h1>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="create_employee_new_username" required><br><br>
+        <label for="name">Username:</label><br>
+        <input type="text" id="name" name="create_emp_name" required><br><br>
 
         <label for="email">email:</label><br>
-        <input type="text" id="email" name="create_employee_eamil" required><br><br>
+        <input type="text" id="email" name="create_emp_email" required><br><br>
 
         
         <input type="submit" value="register">

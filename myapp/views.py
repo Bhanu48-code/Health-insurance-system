@@ -77,12 +77,34 @@ def show_users(request):
 
 #below all code belongs to employee creation and registration 
 def employeeNewRegistration(request):
+   return render(request,"New_Employee_registration.html")
+
+def employeelogin(request):
+    return render(request,"employee_login.html")
+
+def employeeDetailsRegistration(request):
     if request.method == 'POST':
-        create_employee_username = request.POST.get('create_employee_new_username')
-        create_employee_email = request.POST.get('create_employee_new_password')
+        create_emp_name = request.POST.get('create_emp_name')
+        create_emp_email = request.POST.get('create_emp_email')
         
-        if create_employee_username and create_employee_email:
-            Myemployee.objects.create(name=create_employee_username, email=create_employee_email)
+
+        
+
+        if create_emp_name and create_emp_email:
+             
+
+            try:
+               Myemployee.objects.create(name=create_emp_name, email=create_emp_email)
+               
+               return HttpResponse("register successfully")
+               #return render(request,"login.html")
+              
+            except Exception as e:
+               return HttpResponse(f"Error: {e}")
+               return render(request, "Registration_successfull.html", {"username": create_password})
+               # Save the data to MySQL via Django model
+    
+    
 
 
 

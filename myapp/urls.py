@@ -10,7 +10,8 @@ urlpatterns = [
      path('show-users/', views.show_users, name='show_users'),
 
      #below all are for employee related 
-
-     path("newEmployeeRegistration/",views.employeeNewRegistration,name="employee_new_registration")
+     path("employeeLogin/",views.employeelogin,name="emplogin"),
+     path("newEmployeeRegistration/",views.employeeNewRegistration,name="employeenewregistration"),
+     path("newempDetailsRegistration/",views.employeeDetailsRegistration,name="employeeDetailsRegistration"),
 
 ]
