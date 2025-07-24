@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import MyApp
+from .models import MyApp, Myemployee
 
 # Create your views here.
 def login(request):
@@ -72,5 +72,17 @@ def show_users(request):
 
    
    
+
+
+
+#below all code belongs to employee creation and registration 
+def employeeNewRegistration(request):
+    if request.method == 'POST':
+        create_employee_username = request.POST.get('create_employee_new_username')
+        create_employee_email = request.POST.get('create_employee_new_password')
+        
+        if create_employee_username and create_employee_email:
+            Myemployee.objects.create(name=create_employee_username, email=create_employee_email)
+
 
 
