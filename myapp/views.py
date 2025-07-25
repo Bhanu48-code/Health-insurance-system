@@ -118,8 +118,14 @@ def giveAccessForAdminRole(request):
     if request.method == 'POST':
         New_adminUser_Email_Id = request.POST.get("NewAdminEmail")
         New_adminUser_Password = request.POST.get("NewAdminPassword")
-        MyadminUsers.objects.create(email=New_adminUser_Email_Id, AdminPassword=New_adminUser_Password)
-        return HttpResponse("Admin access given successfully.")
+        if MyadminUsers.objects.filter(email=New_adminUser_Email_Id).exists():
+            return render(request,"adminHome.html")
+        else:
+            # If not exists, create new admin user
+            MyadminUsers.objects.create(email=New_adminUser_Email_Id, AdminPassword=New_adminUser_Password)
+            return render(request, "adminHome.html")
+
+        
 
     
     
