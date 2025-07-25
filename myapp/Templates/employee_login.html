@@ -17,14 +17,14 @@
     align-items: center;
 ">
     
-    <form method="POST" action="//" >
+    <form method="POST" action="/employeeValidation/" >
         {% csrf_token %}
         <h2>Login</h2>
-        <label for="name" >Username:</label><br>
-        <input type="text" id="username" name="name" required><br><br>
+        <label for="Emiail ID" >Email Id:</label><br>
+        <input type="email" id="EmpEmailId" name="EMP_Email_ID" required><br><br>
 
-        <label for="email">email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="EMP_password" name="EMP_Password" required><br><br>
 
         <input type="submit" value="Login">
         

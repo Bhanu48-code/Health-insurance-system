@@ -41,7 +41,7 @@
 <!-- Modal for Give Access -->
 <div class="modal fade" id="accessModal" tabindex="-1" aria-labelledby="accessModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="POST" action="/give-access/">
+    <form method="POST" action="/giveAccess/">
       {% csrf_token %}
       <div class="modal-content">
         <div class="modal-header">
@@ -50,11 +50,15 @@
         </div>
         <div class="modal-body">
           <label for="email" class="form-label">Enter Email ID:</label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="user@example.com" required>
+          <input type="email" name="NewAdminEmail" id="email" class="form-control" placeholder="user@example.com" required>
+        </div>
+        <div class="modal-body">
+          <label for="Password" class="form-label">Password:</label>
+          <input type="password" name="NewAdminPassword" id="newadminpassword" class="form-control" placeholder="Type Password" required>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Submit</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <input type="submit" class="btn btn-success" value="Login">
+          <input type="cancel" class="btn btn-secondary" data-bs-dismiss="modal" value="Cancel">
         </div>
       </div>
     </form>

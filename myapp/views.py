@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import MyApp, Myemployee
+from .models import MyApp, Myemployee, MyadminUsers
 
 # Create your views here.
 def login(request):
@@ -84,17 +84,14 @@ def employeelogin(request):
 
 def employeeDetailsRegistration(request):
     if request.method == 'POST':
-        create_emp_name = request.POST.get('create_emp_name')
-        create_emp_email = request.POST.get('create_emp_email')
-        
+        emp_name = request.POST.get('create_emp_name')
+        emp_email = request.POST.get('create_emp_email')
 
-        
-
-        if create_emp_name and create_emp_email:
+        if emp_name and emp_email:
              
 
             try:
-               Myemployee.objects.create(name=create_emp_name, email=create_emp_email)
+               Myemployee.objects.create(name=emp_name, email=emp_email)
                
                return HttpResponse("register successfully")
                #return render(request,"login.html")
@@ -103,6 +100,27 @@ def employeeDetailsRegistration(request):
                return HttpResponse(f"Error: {e}")
                return render(request, "Registration_successfull.html", {"username": create_password})
                # Save the data to MySQL via Django model
+
+#employee login vaidtion for admin access 
+def employeeValidation(request):
+     if request.method == 'POST':
+         Emp_login_mail_Id = request.POST.get("EMP_Email_ID")
+         Emp_login_password = request.POST.get("EMP_Password")
+         try:
+             #validating the credentils present present in Admin table or not 
+             user = MyadminUsers.objects.get(email=Emp_login_mail_Id, AdminPassword=Emp_login_password)
+             return render(request,"adminHome.html")
+         except MyadminUsers.DoesNotExist:
+             return HttpResponse("no access for admin")
+         
+# below method is for giving admin access for new user
+def giveAccessForAdminRole(request):
+    if request.method == 'POST':
+        New_adminUser_Email_Id = request.POST.get("NewAdminEmail")
+        New_adminUser_Password = request.POST.get("NewAdminPassword")
+        MyadminUsers.objects.create(email=New_adminUser_Email_Id, AdminPassword=New_adminUser_Password)
+        return HttpResponse("Admin access given successfully.")
+
     
     
 

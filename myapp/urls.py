@@ -13,5 +13,8 @@ urlpatterns = [
      path("employeeLogin/",views.employeelogin,name="emplogin"),
      path("newEmployeeRegistration/",views.employeeNewRegistration,name="employeenewregistration"),
      path("newempDetailsRegistration/",views.employeeDetailsRegistration,name="employeeDetailsRegistration"),
+     path("employeeValidation/",views.employeeValidation,name="employeeValidation"),
+     path("giveAccess/",views.giveAccessForAdminRole,name="giveAccessForAdminRole"),
+
 
 ]
