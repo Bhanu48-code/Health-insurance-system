@@ -17,6 +17,7 @@ class Myemployee(models.Model):
     
     name = models.CharField(max_length=150)
     email = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
 
     class Meta:
         db_table = 'employee'  # must match the MySQL table name exactly

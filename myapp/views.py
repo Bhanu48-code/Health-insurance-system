@@ -86,12 +86,14 @@ def employeeDetailsRegistration(request):
     if request.method == 'POST':
         emp_name = request.POST.get('create_emp_name')
         emp_email = request.POST.get('create_emp_email')
+        emp_Password = request.POST.get('new_emp_password')
 
-        if emp_name and emp_email:
+        if emp_name and emp_email and emp_Password:
              
 
             try:
-               Myemployee.objects.create(name=emp_name, email=emp_email)
+               Myemployee.objects.create(name=emp_name, email=emp_email, password=emp_Password)
+               return render(request,"employee_login.html")
                
                return HttpResponse("register successfully")
                #return render(request,"login.html")
@@ -106,14 +108,16 @@ def employeeValidation(request):
      if request.method == 'POST':
          Emp_login_mail_Id = request.POST.get("EMP_Email_ID")
          Emp_login_password = request.POST.get("EMP_Password")
-         try:
+         if MyadminUsers.objects.filter(email=Emp_login_mail_Id, AdminPassword=Emp_login_password).exists():
              #validating the credentils present present in Admin table or not 
              user = MyadminUsers.objects.get(email=Emp_login_mail_Id, AdminPassword=Emp_login_password)
              return render(request,"adminHome.html")
-         except MyadminUsers.DoesNotExist:
-             return HttpResponse("no access for admin")
-         
-# below method is for giving admin access for new user
+         elif Myemployee.objects.filter(email=Emp_login_mail_Id, password=Emp_login_password).exists():
+             return render(request,"NonAdminEmployeLogin.html")
+         else:
+             return HttpResponse("Wrong credentials no access is available for you")
+    
+# below method is for giving admin access for new admin user
 def giveAccessForAdminRole(request):
     if request.method == 'POST':
         New_adminUser_Email_Id = request.POST.get("NewAdminEmail")
@@ -124,6 +128,7 @@ def giveAccessForAdminRole(request):
             # If not exists, create new admin user
             MyadminUsers.objects.create(email=New_adminUser_Email_Id, AdminPassword=New_adminUser_Password)
             return render(request, "adminHome.html")
+        
 
         
 
