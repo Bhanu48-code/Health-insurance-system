@@ -34,5 +34,22 @@ class MyadminUsers(models.Model):
         db_table = 'adminUsers'  # must match the MySQL table name exactly
         managed = False        # prevents Django from modifying table
 
+
+#below code belongs to customers db table
+
+class Customers(models.Model):
+    
+    
+    NAME = models.CharField(max_length=128)
+    GENDER = models.CharField(max_length=128)
+    AADHAR_NO = models.CharField(max_length=128)
+    PHONE_NUMBER = models.CharField(max_length=128)
+    user_name = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
+
+    class Meta:
+        db_table = 'customers'  # must match the MySQL table name exactly
+        managed = False        # prevents Django from modifying table
+
 # Create your models here.
 

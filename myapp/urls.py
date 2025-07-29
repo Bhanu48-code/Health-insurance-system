@@ -9,6 +9,8 @@ urlpatterns = [
     path('newRegistration/',views.newRegistration,name='New_Registration'),
      path('show-users/', views.show_users, name='show_users'),
 
+     
+
      #below all are for employee related 
      path("employeeLogin/",views.employeelogin,name="emplogin"),
      path("newEmployeeRegistration/",views.employeeNewRegistration,name="employeenewregistration"),

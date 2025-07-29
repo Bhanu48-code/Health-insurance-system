@@ -1,29 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import MyApp, Myemployee, MyadminUsers
+from .models import MyApp, Myemployee, MyadminUsers, Customers
 
 # Create your views here.
 def login(request):
    # return HttpResponse("welcome bhanu!!!! Great work.")
-   
-    if (request.method == 'POST'):
-        
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-       
-         # You can now validate credentials or authenticate the user
-        try:
-            
-             user = MyApp.objects.get(username=username, password=password)
-             return render(request, 'adminHome.html')
-             #return render(request, 'welcome.html', {'user': user.username})
-            
-        except MyApp.DoesNotExist:
-            return HttpResponse("Invalid username or password")
-           
-    return render(request, 'login.html')
+   if request.method == 'POST':
+        CUSTOMER_NAME = request.POST.get('CUSTOMER_NAME')
+        CUSTOMER_GENDER = request.POST.get('CUSTOMER_GENDER')
+        CUSTOMER_AADHAR = request.POST.get('CUSTOMER_AADHAR_NO')
+        CUSTOMER_PHONE_NUMBER = request.POST.get('CUSTOMER_PHONE_NO')
+        CUSTOMER_USER_NAME = request.POST.get('CUSTOMER_USER_NAME')
+        CUSTOMER_PASSWORD = request.POST.get('CUSTOMER_PASSWORD')
+        Customers.objects.create(NAME = CUSTOMER_NAME, GENDER = CUSTOMER_GENDER, AADHAR_NO = CUSTOMER_AADHAR, PHONE_NUMBER = CUSTOMER_PHONE_NUMBER, user_name = CUSTOMER_USER_NAME, password = CUSTOMER_PASSWORD)
+        return HttpResponse("Registered successfully")
+   else:
+       return render(request,"customer_registration.html")
    #return render(request, 'home.html')
 
 
@@ -69,6 +62,7 @@ def newRegistration(request):
 def show_users(request):
     users = MyApp.objects.all()
     return render(request, 'users.html', {'users': users})
+
 
    
    
