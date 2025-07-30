@@ -48,6 +48,7 @@ class Customers(models.Model):
     password = models.CharField(max_length=128)
 
     class Meta:
+        unique_together = ('PHONE_NUMBER', 'user_name', 'AADHAR_NO')
         db_table = 'customers'  # must match the MySQL table name exactly
         managed = False        # prevents Django from modifying table
 

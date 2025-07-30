@@ -13,8 +13,11 @@ def login(request):
         CUSTOMER_PHONE_NUMBER = request.POST.get('CUSTOMER_PHONE_NO')
         CUSTOMER_USER_NAME = request.POST.get('CUSTOMER_USER_NAME')
         CUSTOMER_PASSWORD = request.POST.get('CUSTOMER_PASSWORD')
-        Customers.objects.create(NAME = CUSTOMER_NAME, GENDER = CUSTOMER_GENDER, AADHAR_NO = CUSTOMER_AADHAR, PHONE_NUMBER = CUSTOMER_PHONE_NUMBER, user_name = CUSTOMER_USER_NAME, password = CUSTOMER_PASSWORD)
-        return HttpResponse("Registered successfully")
+        if Customers.objects.filter(NAME = CUSTOMER_NAME, GENDER = CUSTOMER_GENDER, AADHAR_NO = CUSTOMER_AADHAR, PHONE_NUMBER = CUSTOMER_PHONE_NUMBER, user_name = CUSTOMER_USER_NAME, password = CUSTOMER_PASSWORD).exists():
+            return HttpResponse("Given Data was already present")
+        else:            
+            Customers.objects.create(NAME = CUSTOMER_NAME, GENDER = CUSTOMER_GENDER, AADHAR_NO = CUSTOMER_AADHAR, PHONE_NUMBER = CUSTOMER_PHONE_NUMBER, user_name = CUSTOMER_USER_NAME, password = CUSTOMER_PASSWORD)
+            return HttpResponse("Registered successfully")
    else:
        return render(request,"customer_registration.html")
    #return render(request, 'home.html')
